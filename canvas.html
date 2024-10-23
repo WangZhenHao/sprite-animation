@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+    <canvas></canvas>
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        const w = 600
+        const h = 600
+
+        canvas.width = w
+        canvas.height = h
+
+        const playerImg = new Image()
+        playerImg.src = './shadow_dog.png'
+        const imgWidth = 575;
+        const imgHeight = 523
+
+        let framex = 0
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h)
+            ctx.drawImage(playerImg, framex * imgWidth, 0, imgWidth, imgHeight, 0, 0, imgWidth, imgHeight)
+
+            if(framex < 6) {
+                framex++
+            } else {
+                framex = 0
+            }
+
+            requestAnimationFrame(animate)
+        }
+
+        animate()
+    </script>
+</body>
+</html>
