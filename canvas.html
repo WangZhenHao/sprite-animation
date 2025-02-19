@@ -16,30 +16,30 @@
         const canvas = document.querySelector('canvas')
         const ctx = canvas.getContext('2d')
 
-        const w = 600
-        const h = 600
+        canWidth = 600
+        canHeight = 600
 
-        canvas.width = w
-        canvas.height = h
+        canvas.width = canWidth
+        canvas.height = canHeight
+        const playImage = new Image();
+        playImage.src = './shadow_dog.png'
 
-        const playerImg = new Image()
-        playerImg.src = './shadow_dog.png'
         const imgWidth = 575;
-        const imgHeight = 523
-
-        let framex = 0
+        const imgHeight = 5230 / 10
+        
+        let frameX = 0
+        let frameY = 6;
 
         function animate() {
-            ctx.clearRect(0, 0, w, h)
-            ctx.drawImage(playerImg, framex * imgWidth, 0, imgWidth, imgHeight, 0, 0, imgWidth, imgHeight)
-
-            if(framex < 6) {
-                framex++
-            } else {
-                framex = 0
-            }
-
+            ctx.clearRect(0, 0, canWidth, canHeight)
+            ctx.drawImage(playImage, frameX * imgWidth, frameY * imgHeight, imgWidth, imgHeight, 0, 0, canWidth, canHeight)
             requestAnimationFrame(animate)
+
+            if(frameX > 5) {
+                frameX = 0
+            } else {
+                frameX++
+            }
         }
 
         animate()
